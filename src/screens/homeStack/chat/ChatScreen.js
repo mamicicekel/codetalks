@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FlatList, SafeAreaView, Text, } from 'react-native';
+import { FlatList, SafeAreaView, Text } from 'react-native';
 import styles from './ChatScreen.styles';
 import { useSelector } from 'react-redux';
 import database from '@react-native-firebase/database';
@@ -18,7 +18,7 @@ export default function ChatScreen({ route }) {
     const [usermail, setUsername] = useState(auth().currentUser.email)
     const flatlistRef = useRef()
     const darkMode = useSelector((state) => state.theme.darkMode)
-
+    
     useEffect(() => {
         database().ref(`/rooms/${route.params.item.id}/messages/`).on('value', snapshot => {
             const contentData = snapshot.val()
@@ -86,6 +86,7 @@ export default function ChatScreen({ route }) {
             ))}
         </>
     )
+    
 
     return (
         <SafeAreaView style={darkMode ? styles.light.container : styles.dark.container}>

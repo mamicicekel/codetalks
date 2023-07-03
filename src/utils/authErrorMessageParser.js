@@ -1,17 +1,17 @@
 export default function (errorCode) {
     switch (errorCode) {
         case "auth/invalid-email":
-            return "Geçersiz e-posta adresi"
+            return "Invalid email address"
         case "auth/email-already-exists":
-            return "Kullanıcı zaten kayıtlı"
+            return "User is already registered"
         case "auth/email-already-in-use":
-            return "Kullanıcı zaten kayıtlı"
+            return "User is already registered"
         case "auth/user-not-found":
-            return "Kullanıcı bulunamadı"
+            return "User not found"
         case "auth/weak-password":
-            return "Parola çok zayıf"
+            return "Password is too weak"
         case "auth/wrong-password":
-            return "Parola geçersiz"
+            return "Invalid password"
         default:
             return errorCode
     }
