@@ -25,7 +25,7 @@ export default function RegisterScreen() {
     async function handleFormSubmit(formValues) {
         if (formValues.password !== formValues.repassword) {
             showMessage ({
-                message: "Şifreler uyuşmuyor",
+                message: "Passwords do not match",
                 type: "info",
             })
             return
@@ -37,7 +37,7 @@ export default function RegisterScreen() {
                 formValues.password,
             )
             showMessage ({
-                message: "Kullanıcı oluşturuldu",
+                message: "User created",
                 type: "success",
             })
 

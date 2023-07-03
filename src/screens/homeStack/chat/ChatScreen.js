@@ -18,7 +18,7 @@ export default function ChatScreen({ route }) {
     const [usermail, setUsername] = useState(auth().currentUser.email)
     const flatlistRef = useRef()
     const darkMode = useSelector((state) => state.theme.darkMode)
-    
+
     useEffect(() => {
         database().ref(`/rooms/${route.params.item.id}/messages/`).on('value', snapshot => {
             const contentData = snapshot.val()
@@ -56,16 +56,20 @@ export default function ChatScreen({ route }) {
 
     const deleteMessage = () => {
         if (selectedMessage) {
-            database()
-                .ref(`/rooms/${route.params.item.id}/messages/${selectedMessage.id}`)
-                .remove()
-                .then(() => {
-                    setModalVisible(false)
-                })
-                .catch((error) => showMessage({
-                    message: error,
-                    type: "warning",
-                }))
+            if (selectedMessage.username === usermail.split('@')[0]) {
+                database()
+                    .ref(`/rooms/${route.params.item.id}/messages/${selectedMessage.id}`)
+                    .remove()
+                    .then(() => {
+                        setModalVisible(false);
+                    })
+                    .catch((error) =>
+                        showMessage({
+                            message: error,
+                            type: 'warning',
+                        })
+                    )
+            }
         }
     }
 
@@ -82,11 +86,19 @@ export default function ChatScreen({ route }) {
         <>
             <Text style={darkMode ? styles.light.date : styles.dark.date}>{item.date}</Text>
             {item.messages.map((message, index) => (
-                <MessageCard key={index} message={message} onLongPress={() => toggleModal(message)} />
+                <MessageCard
+                    key={index}
+                    message={message}
+                    onLongPress={
+                        message.username === usermail.split('@')[0]
+                            ? () => toggleModal(message)
+                            : undefined
+                    }
+                />
             ))}
         </>
     )
-    
+
 
     return (
         <SafeAreaView style={darkMode ? styles.light.container : styles.dark.container}>
