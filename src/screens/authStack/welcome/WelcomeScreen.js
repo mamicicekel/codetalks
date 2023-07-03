@@ -11,7 +11,7 @@ export default function WelcomeScreen({ navigation }) {
         <SafeAreaView style={darkMode ? styles.light.container : styles.dark.container}>
             <Text style={darkMode ? styles.light.logoText : styles.dark.logoText}>{"</>"}</Text>
             <Text style={darkMode ? styles.light.greetingText : styles.dark.greetingText}>Welcome!</Text>
-            <Text style={darkMode ? styles.light.headerText : styles.dark.headerText}>Create chat rooms and sign up or log in to join.</Text>
+            <Text style={darkMode ? styles.light.headerText : styles.dark.headerText}>Register or sign in to create chat rooms and start messaging.</Text>
             <View style={darkMode ? styles.light.buttonContainer : styles.dark.buttonContainer}>
                 <Button theme="primary" title="Sign In" onPress={() => navigation.navigate('SignInScreen')} />
                 <Button theme="secondary" title="Register" onPress={() => navigation.navigate('RegisterScreen')} />
