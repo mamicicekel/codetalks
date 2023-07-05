@@ -14,7 +14,7 @@ export default function MessageInput({ type, isSecure, value, onChangeText, icon
     return (
         <View style={darkMode ? styles.light.container : styles.dark.container}>
             <TextInput
-                style={[darkMode ? styles.light.input : styles.dark.input, { height: Math.max(35, inputHeight) }]}
+                style={[darkMode ? styles.light.input : styles.dark.input, { height: Math.max(36, inputHeight) }]}
                 textContentType={type}
                 secureTextEntry={isSecure}
                 autoCapitalize='none'
